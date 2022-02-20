@@ -1,16 +1,17 @@
+from tkinter.tix import Tree
 from webcolors import CSS3_HEX_TO_NAMES
 from webcolors import hex_to_rgb
 from scipy.spatial import KDTree
 import time
 import sys
 
-
-sys.path.append('/opt/mycroft/skills/easy-shopping-advanced-skill/cvAPI')
-from util import callAPI, encode_image_from_file
-
 MYCROFT_VERSION = True
+TEST_IMAGE_PATH = '/opt/mycroft/skills/easy-shopping-advanced-skill/testPhoto/1.jpeg'
 if MYCROFT_VERSION:
     from mycroft.util import LOG
+    from .util import callAPI, encode_image_from_file
+else:
+    from util import callAPI, encode_image_from_file
 
 def getRGBValues():
     css3_db = CSS3_HEX_TO_NAMES
@@ -119,7 +120,7 @@ def getDetail(image_file):
 
 if not MYCROFT_VERSION:
     print(time.time())
-    a = getDetail('/opt/mycroft/skills/sandbox-git-skill/photo/1.jpeg')
+    a = getDetail(TEST_IMAGE_PATH)
     print(a)
     print(time.time())
 

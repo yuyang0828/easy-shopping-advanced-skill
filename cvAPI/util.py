@@ -3,6 +3,7 @@ from requests import Session
 import io
 import base64
 
+API_KEY = 'AIzaSyB2z8WiG6asWNHf4zU_rts560YdYtwwAy4'
 
 def encode_image_from_file(file_name):
     with io.open(file_name, 'rb') as image_file:
@@ -86,8 +87,7 @@ def callAPI(image_base64, mode='default'):
     }
 
     # set api key
-    api_key = 'AIzaSyBMUt71ab15xTtJlM6giUWqNxcSDGUroEg'
-    # api_key = 'AIzaSyBl3BGjHg4mirVzodDtDpCz81Bo21ZWUuk'
+    api_key = API_KEY
 
     parameters = {
         'key': api_key

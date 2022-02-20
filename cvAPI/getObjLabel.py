@@ -5,12 +5,13 @@ import time
 import cv2
 import sys
 
-sys.path.append('/opt/mycroft/skills/easy-shopping-advanced-skill/cvAPI')
-from util import callAPI, encode_image_from_file
-
 MYCROFT_VERSION = True
+TEST_IMAGE_PATH = '/opt/mycroft/skills/easy-shopping-advanced-skill/testPhoto/1.jpeg'
 if MYCROFT_VERSION:
+    from .util import callAPI, encode_image_from_file
     from mycroft.util import LOG
+else:
+    from util import callAPI, encode_image_from_file
     
 def getObjectsThenLabel(image_file):
 
@@ -19,7 +20,7 @@ def getObjectsThenLabel(image_file):
 
     # get location of each objects
     response = callAPI(image_base64, 'LOC')
-    print(response)
+    # print(response)
 
     obj_loc_list = response['responses'][0]["localizedObjectAnnotations"]
 
@@ -78,7 +79,6 @@ def getLabel(image_base64):
 
 if not MYCROFT_VERSION:
     print('start', time.time())
-    a = getObjectsThenLabel(
-        '/opt/mycroft/skills/sandbox-git-skill.yuyang0828/photo/1.jpeg')
+    a = getObjectsThenLabel(TEST_IMAGE_PATH)
     print(a)
     print('end', time.time())
